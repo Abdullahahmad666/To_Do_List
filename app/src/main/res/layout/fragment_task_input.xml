@@ -4,28 +4,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New Task"
+        android:background="@color/purple"
+        app:layout_constraintTop_toTopOf= "parent"
+        app:layout_constraintBottom_toTopOf="@id/edit_text_title"
+        android:id="@+id/tvtodo"
+        android:gravity="center_horizontal"
+        android:textSize="32sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/white"
+        />
+
     <!-- Task Title Input -->
     <EditText
         android:id="@+id/edit_text_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:hint="Task Title"
         android:inputType="text"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvtodo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <!-- Task Description Input -->
     <EditText
         android:id="@+id/edit_text_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:hint="Task Description"
         android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        />
 
     <!-- Save Button -->
     <Button
