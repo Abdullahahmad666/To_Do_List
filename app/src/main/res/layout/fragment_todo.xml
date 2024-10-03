@@ -3,18 +3,34 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ToDo List"
+        android:background="@color/purple"
+        app:layout_constraintTop_toTopOf= "parent"
+        app:layout_constraintBottom_toTopOf="@id/list_view_todo"
+        android:id="@+id/tvtodo"
+        android:gravity="center_horizontal"
+        android:textSize="32sp"
+        android:layout_margin="10dp"
+        android:textColor="@color/white"
+        />
+
+
     <!-- ListView to display tasks -->
     <ListView
         android:id="@+id/list_view_todo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvtodo"
         app:layout_constraintBottom_toTopOf="@+id/fab_add_task"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"
+        />
 
     <!-- TextView for "No Tasks" message -->
     <TextView
