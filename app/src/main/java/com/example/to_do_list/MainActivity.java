@@ -1,10 +1,13 @@
 package com.example.to_do_list;
 
 import android.os.Bundle;
-
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity implements TodoFragment.OnTaskClickListener, TaskInputFragment.OnTaskAddedListener {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,41 +15,54 @@ public class MainActivity extends AppCompatActivity implements TodoFragment.OnTa
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new TodoFragment())
-                    .commit();
+            replaceFragment(new TodoFragment(), false);
         }
+
+        Log.d(TAG, "onCreate: ");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
     }
 
     @Override
     public void onTaskClick(TodoTask task) {
-        // Open TaskDetailFragment to show task details
-        TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(task);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, detailFragment)
-                .addToBackStack(null)
-                .commit();
+        // Placeholder for task details logic (if needed)
     }
 
     @Override
     public void onAddTaskClick() {
-        // Open TaskInputFragment to add a new task
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new TaskInputFragment())
-                .addToBackStack(null)
-                .commit();
+        replaceFragment(new TaskInputFragment(), true);
     }
 
     @Override
     public void onTaskAdded(TodoTask task) {
-        // Go back to TodoFragment after task is added
-        getSupportFragmentManager().popBackStack();
+        getSupportFragmentManager().popBackStack();  // Go back to TodoFragment
 
-        // Find the existing TodoFragment and add the new task to it
         TodoFragment todoFragment = (TodoFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        if (todoFragment instanceof TodoFragment) {
-            todoFragment.addTask(task); // Add the new task to the list
+        if (todoFragment != null) {
+            todoFragment.addTask(task);
+        }
+    }
+
+    private void replaceFragment(Fragment fragment, boolean addToBackStack) {
+        if (addToBackStack) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
         }
     }
 }
-
