@@ -6,4 +6,6 @@
     <string name="add_task">Add Task</string>
     <string name="task_title">Task Title</string>
     <string name="task_description">Task Description</string>
+    <string name="no_tasks_available">No tasks available</string>
+    <string name="todo_list">ToDo List</string>
 </resources>

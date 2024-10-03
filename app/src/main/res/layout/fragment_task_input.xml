@@ -2,19 +2,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp">
+    android:padding="@dimen/pad_16"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Task"
+        android:text="@string/add_task"
         android:background="@color/purple"
         app:layout_constraintTop_toTopOf= "parent"
         app:layout_constraintBottom_toTopOf="@id/edit_text_title"
         android:id="@+id/tvtodo"
         android:gravity="center_horizontal"
-        android:textSize="32sp"
-        android:layout_margin="10dp"
+        android:textSize="@dimen/text_32"
+        android:layout_margin="@dimen/margin"
         android:textColor="@color/white"
         />
 
@@ -22,8 +23,8 @@
     <EditText
         android:id="@+id/edit_text_title"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Task Title"
+        android:layout_height="@dimen/height"
+        android:hint="@string/task_title"
         android:inputType="text"
         app:layout_constraintTop_toTopOf="@id/tvtodo"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,13 +36,13 @@
     <EditText
         android:id="@+id/edit_text_description"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Task Description"
+        android:layout_height="@dimen/height"
+        android:hint="@string/task_description"
         android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margintop"
         />
 
     <!-- Save Button -->
@@ -53,5 +54,5 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_text_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="@dimen/margin_top" />
 </androidx.constraintlayout.widget.ConstraintLayout>
