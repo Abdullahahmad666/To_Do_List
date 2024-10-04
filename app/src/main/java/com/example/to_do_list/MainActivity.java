@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements TodoFragment.OnTa
     }
 
     @Override
+
     public void onTaskAdded(TodoTask task) {
         getSupportFragmentManager().popBackStack();  // Go back to TodoFragment
 
@@ -51,7 +52,9 @@ public class MainActivity extends AppCompatActivity implements TodoFragment.OnTa
         if (todoFragment != null) {
             todoFragment.addTask(task);
         }
+
     }
+
 
     private void replaceFragment(Fragment fragment, boolean addToBackStack) {
         if (addToBackStack) {

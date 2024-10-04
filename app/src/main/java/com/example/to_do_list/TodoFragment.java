@@ -27,7 +27,7 @@ public class TodoFragment extends Fragment {
     }
 
     @Nullable
-    @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_todo, container, false);
 
@@ -38,9 +38,9 @@ public class TodoFragment extends Fragment {
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, taskTitles);
         listView.setAdapter(adapter);
 
-        // Add a hardcoded task for testing
-        TodoTask hardcodedTask = new TodoTask("Buy Groceries", "Milk, Eggs, Bread");
-        addTask(hardcodedTask);
+        // Remove the hardcoded task
+        // TodoTask hardcodedTask = new TodoTask("Buy Groceries", "Milk, Eggs, Bread");
+        // addTask(hardcodedTask);
 
         // Show "No Tasks" message if the list is empty
         checkTaskListVisibility();
@@ -62,6 +62,9 @@ public class TodoFragment extends Fragment {
         return view;
     }
 
+
+
+
     // Method to add a task to the list and update UI
     public void addTask(TodoTask task) {
         todoTaskList.add(task);
@@ -73,11 +76,14 @@ public class TodoFragment extends Fragment {
     // Method to open TaskDetailFragment
     private void openTaskDetailFragment(TodoTask task) {
         TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(task.getTitle(), task.getDescription());
+
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, detailFragment)
-                .addToBackStack(null)
+                .hide(this) // Hide the current instance of TodoFragment
+                .add(R.id.fragment_container, detailFragment) // Add the TaskDetailFragment on top
+                .addToBackStack(null) // Add the transaction to the back stack so the user can navigate back
                 .commit();
     }
+
 
     // Check if task list is empty and toggle visibility of the "No Tasks" message
     private void checkTaskListVisibility() {

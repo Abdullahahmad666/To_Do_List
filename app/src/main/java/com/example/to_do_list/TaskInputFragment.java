@@ -27,6 +27,7 @@ public class TaskInputFragment extends Fragment {
     private OnTaskAddedListener listener;
 
     @Override
+
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnTaskAddedListener) {
@@ -36,13 +37,14 @@ public class TaskInputFragment extends Fragment {
         }
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task_input, container, false);
 
-        titleEditText = view.findViewById(R.id.edit_text_title);
-        descriptionEditText = view.findViewById(R.id.edit_text_description);
+        titleEditText = view.findViewById(R.id.edit_text_title);  // Ensure correct ID
+        descriptionEditText = view.findViewById(R.id.edit_text_description);  // Ensure correct ID
         Button saveButton = view.findViewById(R.id.btn_save);
 
         saveButton.setOnClickListener(v -> {
@@ -57,14 +59,19 @@ public class TaskInputFragment extends Fragment {
             TodoTask newTask = new TodoTask(title, description);
 
             if (listener != null) {
-                listener.onTaskAdded(newTask);
+                listener.onTaskAdded(newTask);  // Notify MainActivity
             }
-        });
 
-        Log.d(TAG, "onCreateView: ");
+            // Pop back to the previous fragment
+            if (getParentFragmentManager() != null) {
+                getParentFragmentManager().popBackStack();
+            }
+
+        });
 
         return view;
     }
+
 
     @Override
     public void onStart() {
