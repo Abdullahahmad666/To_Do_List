@@ -76,14 +76,11 @@ public class TodoFragment extends Fragment {
     // Method to open TaskDetailFragment
     private void openTaskDetailFragment(TodoTask task) {
         TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(task.getTitle(), task.getDescription());
-
         getActivity().getSupportFragmentManager().beginTransaction()
-                .hide(this) // Hide the current instance of TodoFragment
-                .add(R.id.fragment_container, detailFragment) // Add the TaskDetailFragment on top
-                .addToBackStack(null) // Add the transaction to the back stack so the user can navigate back
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(null)
                 .commit();
     }
-
 
     // Check if task list is empty and toggle visibility of the "No Tasks" message
     private void checkTaskListVisibility() {

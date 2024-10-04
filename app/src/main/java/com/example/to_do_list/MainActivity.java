@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity implements TodoFragment.OnTa
 
     private static final String TAG = "MainActivity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements TodoFragment.OnTa
         }
 
         Log.d(TAG, "onCreate: ");
+
+
     }
 
     @Override
@@ -50,9 +53,8 @@ public class MainActivity extends AppCompatActivity implements TodoFragment.OnTa
 
         TodoFragment todoFragment = (TodoFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (todoFragment != null) {
-            todoFragment.addTask(task);
+            todoFragment.addTask(task); // Add task to the TodoFragment's list
         }
-
     }
 
 

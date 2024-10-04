@@ -43,8 +43,8 @@ public class TaskInputFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task_input, container, false);
 
-        titleEditText = view.findViewById(R.id.edit_text_title);  // Ensure correct ID
-        descriptionEditText = view.findViewById(R.id.edit_text_description);  // Ensure correct ID
+        titleEditText = view.findViewById(R.id.edit_text_title);
+        descriptionEditText = view.findViewById(R.id.edit_text_description);
         Button saveButton = view.findViewById(R.id.btn_save);
 
         saveButton.setOnClickListener(v -> {
@@ -59,19 +59,20 @@ public class TaskInputFragment extends Fragment {
             TodoTask newTask = new TodoTask(title, description);
 
             if (listener != null) {
-                listener.onTaskAdded(newTask);  // Notify MainActivity
+                listener.onTaskAdded(newTask); // Notify MainActivity to handle the task addition
             }
 
-            // Pop back to the previous fragment
-            if (getParentFragmentManager() != null) {
-                getParentFragmentManager().popBackStack();
+            // Now, go back to the previous fragment (TodoFragment) by popping back the TaskInputFragment
+            if (getFragmentManager() != null) {
+                getFragmentManager().popBackStack(); // This will hide the TaskInputFragment
             }
-
         });
+
+
+        Log.d(TAG, "onCreateView: ");
 
         return view;
     }
-
 
     @Override
     public void onStart() {
