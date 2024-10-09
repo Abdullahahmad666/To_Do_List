@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_todo"
         />
 
-    <!-- Container for TaskDetailFragment, initially hidden in portrait mode -->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/detail_fragment_container"
         android:name="com.example.to_do_list.TaskDetailFragment"
